@@ -9,6 +9,9 @@ import heroVideo from '../assets/images/hero-video.mp4';
 import worldImg from '../assets/images/world.png'
 
 import Subtitle from '../shared/Subtitle';
+import SearchBar from '../shared/SearchBar';
+import ServiceList from '../services/ServiceList';
+import FeaturedTourList from '../components/Featured-tours/FeaturedTourList';
 
 const Home = () => {
   return <>
@@ -35,7 +38,7 @@ const Home = () => {
         </Col>
         <Col lg='2'>
           <div className="hero_img-box mt-4">
-            <video src={heroVideo} alt='hero-video' controls autoPlay/>
+            <video src={heroVideo} alt='hero-video' muted autoPlay loop/>
           </div>
         </Col>
         <Col lg='2'>
@@ -43,10 +46,37 @@ const Home = () => {
             <img src={heroImg02} alt='hero-img-2' />
           </div>
         </Col>
+        <SearchBar />
       </Row>
     </Container>
   </section>
   {/* ========== hero section ends ======== */}
+
+  <section>
+    <Container>
+      <Row>
+        <Col lg='3'>
+          <h5 className="services_subtitle">What we serve</h5>
+          <h2 className="services_title">We offer our best services</h2>
+        </Col>
+        <ServiceList />
+      </Row>
+    </Container>
+  </section>
+
+  {/* ==================featured tour seciont start ==================== */}
+  <section>
+    <Container>
+      <Row>
+        <Col lg='12' className="mb-5">
+          <Subtitle subtitle={"Explore"}/>
+          <h2 className="featured_tour-title">Our featured tours</h2>
+        </Col>
+        <FeaturedTourList />
+      </Row>
+    </Container>
+  </section>
+  {/* ==================featured tour seciont end ==================== */}
   </>
 }
 

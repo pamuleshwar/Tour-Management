@@ -1,0 +1,4 @@
+.section_subtitle {
+    display: inline-block;
+    font-family: var(--subtitle-font-name);
+}
