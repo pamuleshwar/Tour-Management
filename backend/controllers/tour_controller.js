@@ -74,7 +74,7 @@ export const getSingleTour = async (req, res) => {
 
     try{
         //find the tour and update
-        const singleTour = await Tour.findById(id);
+        const singleTour = await Tour.findById(id).populate('reviews');
 
         res.status(200).json({
             success : true,
@@ -97,7 +97,7 @@ export const getAllTour = async (req, res) => {
 
     try{
         //find the tour and update
-        const allTour = await Tour.find({}).skip(page * 8).limit(8);
+        const allTour = await Tour.find({}).populate('reviews').skip(page * 8).limit(8);
 
         res.status(200).json({
             success : true,
@@ -125,7 +125,7 @@ export const getTourBySearch = async (req, res) => {
 
     try{
         //gte -> greater than or equal to.
-        const tours = await Tour.find({city, distance : {$gte : distance}, maxGroupSize : {$gte : maxGroupSize}});
+        const tours = await Tour.find({city, distance : {$gte : distance}, maxGroupSize : {$gte : maxGroupSize}}).populate('reviews');
 
         res.status(200).json({
             success : true,
@@ -146,7 +146,7 @@ export const getFeaturedTour = async (req, res) => {
 
     try{
         //find the tour and update
-        const featuredTour = await Tour.find({ featured : true }).limit(8);
+        const featuredTour = await Tour.find({ featured : true }).populate('reviews').limit(8);
 
         res.status(200).json({
             success : true,
@@ -176,4 +176,4 @@ export const getTourCount = async (req, res) => {
     }catch(err){
         res.status(500).json({success : false, message : "Failed to fetch"});
     }
-}
+};
